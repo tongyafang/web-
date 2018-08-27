@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      border: 0;
+    }
+
+    .all {
+      width: 500px;
+      height: 200px;
+      padding: 7px;
+      border: 1px solid #ccc;
+      margin: 100px auto;
+      position: relative;
+    }
+
+    .screen {
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .screen li {
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+      float: left;
+    }
+
+    .screen ul {
+      position: absolute;
+      left: 0;
+      top: 0px;
+      width: 3000px;
+    }
+
+    .all ol {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      line-height: 20px;
+      text-align: center;
+    }
+
+    .all ol li {
+      float: left;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .all ol li.current {
+      background: #DB192A;
+    }
+
+    #arr {
+      display: none;
+    }
+
+    #arr span {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      margin-top: -20px;
+      background: #000;
+      cursor: pointer;
+      line-height: 40px;
+      text-align: center;
+      font-weight: bold;
+      font-family: '黑体';
+      font-size: 30px;
+      color: #fff;
+      opacity: 0.3;
+      border: 1px solid #fff;
+    }
+
+    #arr #right {
+      right: 5px;
+      left: auto;
+    }
+  </style>
+</head>
+<body>
+<div class="all" id='box'>
+  <div class="screen"><!--相框-->
+    <ul>
+      <li><img src="images/1.jpg" width="500" height="200"/></li>
+      <li><img src="images/2.jpg" width="500" height="200"/></li>
+      <li><img src="images/3.jpg" width="500" height="200"/></li>
+      <li><img src="images/4.jpg" width="500" height="200"/></li>
+      <li><img src="images/5.jpg" width="500" height="200"/></li>
+    </ul>
+    <ol>
+    </ol>
+  </div>
+  <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+</div>
+<script src="../common.js"></script>
+<script>
+  //获取相框
+  var screenobj = my$("box").firstElementChild;
+  //获取相框的宽度
+  var scrwidth = screenobj.offsetWidth;
+  //获取ul
+  var ulobj = screenobj.firstElementChild;
+  //获取ul中的所有li
+  var ullist = ulobj.getElementsByTagName("li");
+  // 获取ol
+  var olobj = screenobj.lastElementChild;
+  var pic=0;
+
+  //==========================设置右下角小方块===============================================================================
+  // 为ol添加li，li的个数和ul中li的个数一致
+  for(var i=0;i<ullist.length;i++){
+      var ollist = document.createElement("li");
+      olobj.appendChild(ollist);
+      ollist.innerText = i+1;
+      //为每个里添加自定义属性---索引值
+      ollist.setAttribute("index",i);
+      //为每个li添加鼠标悬停事件
+      ollist.onmouseover = function(){
+          //所有元素背景颜色样式消除
+          for(var j=0;j<olobj.children.length;j++){
+              olobj.children[j].className = "";
+          }
+          this.className = "current";
+          //获取每个li的属性值
+          pic = this.getAttribute("index");
+          //控制ul根据当前属性值移动
+          animation(ulobj,-pic*scrwidth);
+      };
+  }
+  // 设置ol中第一个里的背景颜色为当前背景颜色
+  olobj.children[0].className = "current";
+//========================设置自动播放=======================================================================================
+  var timeid = setInterval(clickhandle,1500);
+
+  //============================设置左右焦点==============================================================================
+  //鼠标悬停时，左右焦点可见，离开后左右焦点不可用
+  my$("box").onmouseover = function(){
+      my$("arr").style.display = "block";
+      // 鼠标悬停停止自动播放
+      clearInterval(timeid);
+  };
+  my$("box").onmouseout = function(){
+      my$("arr").style.display = "none";
+      // 鼠标离开自动播放
+      timeid = setInterval(clickhandle,1500);
+  };
+
+  //在ul中追加一个li，内容和第一张图一样，设置滚动效果
+  ulobj.append(ulobj.children[0].cloneNode(true));
+
+  //右焦点点击效果
+  my$("right").onclick =clickhandle;
+
+  function clickhandle(){
+      //判断，pic=5时，显示的是第六个li，需要跳转到第一个li，并且同时设置pic=0
+      if(pic==5){
+          ulobj.style.left = 0+"px";
+          pic = 0;
+      }
+      pic++;//pic自加如果放在判断前面，那么第六个li永远不会显示，画面会突然跳转，没有动画效果
+      animation(ulobj,-pic*scrwidth);
+      //设置当前小方框的背景颜色为当前颜色
+      for(var i = 0;i<olobj.children.length;i++){
+          olobj.children[i].className = "";
+      }
+      if(pic==5){
+          olobj.children[0].className = "current";
+      }else{
+          olobj.children[pic].className = "current";
+      }
+  };
+
+  //左焦点点击效果
+    my$("left").onclick = function(){
+        if(pic==0){
+            pic=5;
+            ulobj.style.left = -pic*scrwidth+"px";
+        }
+        pic--;
+        animation(ulobj,-pic*scrwidth);
+        // 设置按钮的颜色跟随改变
+        for(var i = 0;i<olobj.children.length;i++){
+            olobj.children[i].className = "";
+        }
+        olobj.children[pic].className = "current";
+    };
+
+</script>
+
+
+
+</body>
+</html>
