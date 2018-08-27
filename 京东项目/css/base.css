@@ -1,0 +1,477 @@
+/*版心*/
+.w {
+	width: 1190px;
+	margin: auto;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+/*声明引用字体图标*/
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?9nk89v');
+  src:  url('../fonts/icomoon.eot?9nk89v#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?9nk89v') format('truetype'),
+    url('../fonts/icomoon.woff?9nk89v') format('woff'),
+    url('../fonts/icomoon.svg?9nk89v#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+ul, h5,dl, dt, dd, p {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+.style-red {
+	color: red !important;
+}
+body {
+	background-color: #f6f6f6;
+}
+input, button {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: 0;
+}
+/*清楚浮动*/
+.clearfix:before,.clearfix:after { 
+  content:"";
+  display:table;  /* 这句话可以出发BFC BFC可以清除浮动,BFC我们后面讲 */
+}
+.clearfix:after {
+ clear:both;
+}
+.clearfix {
+  *zoom:1;
+}
+/*s {
+	margin: 0;
+	padding: 0;
+	text-indent: 0;
+}*/
+/*京东顶部广告栏开始啦*/
+.J_event {
+	background-color: #000;
+	/*height: 80px;*/	/*a给了高度，会自动撑开盒子，所以父盒子不需要再给高，简化代码*/
+}
+.J_event a {
+	background: url("../images/header.jpg") no-repeat;
+	display: block;
+	height: 80px;
+	position: relative;
+}
+.J_event a i {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	background-color: rgba(0, 0, 0, .4);
+	position: absolute;
+	right: 0;
+	top: 5px;
+	font-family: "icomoon";
+	font-style: normal;
+}
+/*京东顶部广告栏 end*/
+
+/*京东快捷导航栏 开始*/
+.shortcut {
+	height: 30px;
+	line-height: 30px;
+	background-color: #e3e4e5;
+	border-bottom: 1px solid #dbdbdb;
+	color: #999999;
+	font-size: 12px;
+}
+.shortcut li {
+	position: relative;
+}
+.shortcut .fr {
+	margin-right: -45px;
+}
+.shortcut .fr li {
+	float: left;
+}
+.shortcut .fl {
+	margin-left: 260px;
+}
+.shortcut .fl i {
+	font-family: 'icomoon'; 
+	font-style: normal;
+	color: #f10215;
+}
+.shortcut li a {
+	color: #999999;
+}
+.shortcut li a:hover {
+	color: #f11715;
+}
+.space {
+	width: 1px;
+	height: 10px;
+	background-color: #cccccc;
+	margin: 14px 10px 0;
+}
+.dropdown {
+	padding-right: 15px;
+}
+.dropdown i{
+	font-family: "icomoon";
+	font-style: normal;
+	font-size: 16px;
+	position: absolute;
+	right: -3px;
+	top: -2px;
+}
+.erweima {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #cfcfcf;
+	padding: 1px;
+	background: url("../images/mobile.png") no-repeat center;
+	position: absolute;
+	top: 38px;
+    left: -53px;
+    z-index: 1
+}
+/*京东快捷导航栏 end*/
+
+/*京东头部 start*/
+.header {
+
+}
+.inner {
+	height: 140px;
+	/*background-color: pink;*/
+	position: relative;
+}
+/*logo部分*/
+.logo h1 {
+	margin: 0;
+}
+.logo {
+	width: 190px;
+	height: 170px;
+	background-color: #fff;
+	position: absolute;
+	top: -31px;
+	left: 0;
+	box-shadow: 0 -12px 10px rgba(0,0,0,.2);	/*盒子阴影*/
+}
+.logo a {
+	display: block;
+	width: 190px;
+	height: 170px;
+	background: url("../images/logo.png") no-repeat center;
+	text-indent: -200px;
+	overflow: hidden;
+}
+/*搜索栏部分*/
+.search {
+	width: 550px;
+	height: 35px;
+	/*background-color: purple;*/
+	position: absolute;
+	left: 320px;
+	top: 25px;
+}
+/*.search i {		使用字体图标做小相机图标，和下面精灵图效果一样
+	position: absolute;
+	right: 65px;
+	top: 5px;
+	font-family:  "icomoon";
+	font-style: normal;
+	font-size: 20px;
+	cursor: pointer;
+}
+.search i:hover {
+	color: #f10215;
+}*/
+.search i { 	/*使用精灵图做小照相机*/
+	display: block;
+	width: 19px;
+	height: 15px;
+	background: url(../images/sprite-search.png) no-repeat;
+	position: absolute;
+	right: 65px;
+	top: 10px;
+	cursor: pointer;
+}
+.search i:hover {	/*鼠标悬停时相机图标颜色改变 改变背景图片颜色时，背景盒子不动，背景图片移动，移动距离一般为负数*/
+	background-position: -30px 0;
+}
+.search input {
+	width: 497px;
+	height: 34px;
+	border: 1px solid #f10215;
+	float: left;
+	text-indent: 5px;
+	color: #989898;
+}
+.search button {
+	width: 50px;
+	height: 35px;
+	float: left;
+	background-color: #f10215;
+	cursor: pointer;
+}
+.search em {
+	font-family: "icomoon";
+	font-style: normal;
+}
+/*关键字部分*/
+.keywords {
+	width: 517px;
+	height: 16px;
+	/*background-color: #fff;*/
+	position: absolute;
+	top: 72px;
+	left: 322px;
+	font-size: 12px;
+}
+.keywords a {
+	display: block;
+	float: left;
+	line-height: 16px;
+	margin-left: 8px;
+	color: #989898;
+}
+.keywords a:hover {
+	color: #f10125;
+}
+/*右侧广告*/
+.rightgg {
+	width: 190px;
+	height: 42px;
+	/*background-color: #fff;*/
+	position: absolute;
+	right: 13px;
+	bottom: 10px;
+	background: url(../images/computer.jpg);
+}
+/*购物车部分*/
+.shoppingCar {
+	width: 188px;
+	height: 34px;
+	line-height: 34px;
+	border: 1px solid #989898;
+	position: absolute;
+	top: 25px;
+	right: 111px;
+	text-indent: 51px;	/*购物车往中间移动，可以给段落缩进，也可以给i一个左margin*/
+}
+.shoppingCar i {
+	font-family: "icomoon";
+	font-style: normal;
+	color: #f10125;
+	/*margin-left: 51px;*/  
+} 
+.shoppingCar a {
+	/*display: block;
+	line-height: 34px;*/
+	font-size: 12px;
+	color: #f10125;
+}
+.shoppingCar s {
+	/*display: block;*/
+	/*width: 13px;*/
+	height: 16px;
+	line-height: 16px;
+	text-decoration: none;
+	background-color: #f10125;
+	color: #fff;
+	position: absolute;
+	top: 4px;
+	left: 143px;
+	text-indent: 0;
+	padding: 0 3px;
+	font-size: 12px;
+	border-radius: 7px;
+}
+/*导航栏部分*/
+.navitems {
+	height: 42px;
+	line-height: 42px;
+	position: absolute;
+	bottom: 0;
+	left: 231px;
+	/*background-color: #fff;*/
+}
+.navitems ul {
+	float: left;
+	font-size: 17px;
+	font-weight: 700;
+}
+.navitems ul li {
+	float: left;
+	padding-right: 30px;
+}
+.navitems a {
+	color: #555a5f;
+}
+
+.navitems .space {
+	margin: 15px 20px 0 -10px;
+}
+.navitems a:hover {
+	color: #f10125;
+}
+/*京东头部 end*/
+
+/*底部广告开始*/
+.footer {
+	background-color: #eaeaea;
+}
+.foot_inner {
+	/*height: 101px;*/
+	/*background-color: pink;*/
+}
+.foot_inner li {
+	position: relative;
+	width: 297px;
+	height: 101px;
+	line-height: 101px;
+	/*border-right: 1px dashed #000;*/
+	/*background-color: purple;	*/
+	float: left;
+	text-indent: 83px;
+}
+.foot_inner li h5 {
+	font-size: 18px;
+	font-weight: 700;
+}
+.foot_inner .icon {
+	position: absolute;
+	left: 40px;
+	top: 30px;
+	width: 37px;
+	height: 42px;
+	line-height: 42px;	/*行高和首行缩进都会从父元素继承，所以这里要强制性覆盖掉*/
+	text-indent: 0;
+	background: url(../images/ico.png) no-repeat;	
+}
+.foot_inner .duo {
+/*	background: url(../images/ico.png) no-repeat;	*/
+}
+.foot_inner .kuai {
+	background-position: 0 -43px;	
+}
+.foot_inner .hao {
+	background-position: 0 -86px;	
+}
+.foot_inner .sheng {
+	background-position: 0 -129px;	
+}
+/*帮助模块*/
+.help {
+	/*height: 201px;*/
+	/*background-color: pink;*/
+	border-top: 1px solid #dedede;
+}
+.help .help-inner {
+	height: 201px;
+	/*background-color: #fff;*/
+	border-bottom: 1px solid #dedede;
+}
+.help-inner dl {
+	float: left;
+	width: 194px;
+	margin-top: 22px;
+}
+.help-inner dt {
+	height: 32px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #666666;
+}
+.help-inner dd {
+	color: #666666;
+	height: 22px;
+	font-size: 12px;
+}
+.help-inner a {
+	color: #727272;
+}
+.help-inner a:hover {
+	color: #f10125;
+}
+.help-inner .jdzy {
+	background: url(../images/ico_footer.png) no-repeat top center;
+	width: 207px;
+	height: 150px;
+	float: right;
+}
+.jdzy dt {
+	text-align: center;
+}
+.jdzy dd {
+	padding-right: 24px;
+	height: 51px;
+	line-height: 18px;
+}
+.jdzy .ck {
+	padding-right: 12px;
+	text-align: right;
+}
+/*版权模块*/
+.copyright {
+	/*background-color: pink;*/
+	height: 257px;
+	overflow: hidden;  /*防止外边距塌陷*/
+	font-size: 12px;
+	text-align: center;
+}
+.copyright .guanyu {
+	margin: 20px 0 13px 0;
+}
+.guanyu a {
+	color: #727272;
+}
+.guanyu span {
+	margin: 0 5px;
+	color: #9e9e9b;
+}
+.copyright p {
+	height: 23px;
+	color: #9e9e9b;
+}
+/*底部备案信息*/
+.info {
+	margin-top: 7px;
+
+}
+.info span {
+	display: inline-block;
+	width: 103px;
+	height: 32px;
+	/*background-color: skyblue;	*/
+	background: url(../images/ico_footer.png);
+}
+.info .jingyin {
+	background-position: 0 -151px;
+}
+.info .kexin {
+	background-position: -103px -151px;
+}
+.info .wangluo {
+	background-position: 0 -184px;
+}
+.info .chengxin {
+	background-position: -103px -184px;
+}
+.info .zhongguo {
+	background-position: 0 -217px;
+}
+.info .jubao {
+	background-position: -103px -217px;
+}
+/*底部广告 end*/
